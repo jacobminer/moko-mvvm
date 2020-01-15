@@ -4,9 +4,11 @@
 
 package dev.icerock.moko.mvvm.livedata
 
-actual open class LiveData<T>(initialValue: T) {
+actual open class LiveData<T>(initialValue: T): BindableObject {
     private var storedValue: T = initialValue
     private val observers = mutableListOf<(T) -> Unit>()
+
+    var didChange = PassthroughSubject<T, Never>()
 
     actual open val value: T
         get() = storedValue

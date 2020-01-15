@@ -14,6 +14,7 @@ actual open class MutableLiveData<T> actual constructor(initialValue: T) :
         get() = super.value
         set(newValue) {
             changeValue(newValue)
+            didChange.send(newValue)
         }
 
     actual fun postValue(value: T) {
